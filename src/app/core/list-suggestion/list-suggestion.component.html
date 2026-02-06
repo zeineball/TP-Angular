@@ -1,0 +1,87 @@
+<section class="page">
+  <!-- Header local de la page (si ton core/header est global, garde-le là-bas) -->
+  <header class="page__header">
+    <h2 class="page__title">Liste des suggestions</h2>
+    <p class="page__subtitle">Gérez les idées, likez et ajoutez aux favoris</p>
+  </header>
+
+  <!-- Barre de recherche -->
+  <div class="searchbar">
+    <span class="searchbar__icon" aria-hidden="true">🔎</span>
+    <input
+      type="text"
+      class="searchbar__input"
+      [(ngModel)]="searchText"
+      placeholder="Rechercher par titre ou catégorie..."
+      aria-label="Rechercher"
+    />
+  </div>
+
+  <div class="layout">
+    <!-- Grille des cartes -->
+    <div class="grid">
+      <article
+        class="card"
+        *ngFor="let s of filteredSuggestions()"
+        [class.card--refused]="s.status === 'refusee'"
+      >
+        <div class="card__header">
+          <h3 class="card__title">{{ s.title }}</h3>
+          <span
+            class="badge"
+            [ngClass]="{
+              'badge--accepted': s.status === 'acceptee',
+              'badge--pending' : s.status === 'en_attente',
+              'badge--refused' : s.status === 'refusee'
+            }"
+          >
+            {{ s.status }}
+          </span>
+        </div>
+
+        <p class="card__desc">
+          {{ s.description }}
+        </p>
+
+        <div class="card__meta">
+          <span class="meta__item">
+            <strong>Catégorie :</strong> {{ s.category }}
+          </span>
+          <span class="meta__item">
+            <strong>Date :</strong> {{ s.date | date:'dd/MM/yyyy' }}
+          </span>
+          <span class="meta__item">
+            <strong>Likes :</strong> {{ s.nbLikes }}
+          </span>
+        </div>
+
+        <div class="card__actions" *ngIf="s.status !== 'refusee'">
+          <button class="btn btn--like" type="button" (click)="like(s)">
+            👍 Like
+          </button>
+          <button class="btn btn--fav" type="button" (click)="addToFavorites(s)">
+            ⭐ Ajouter aux favoris
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Colonne / bloc favoris -->
+    <aside class="favorites" *ngIf="favorites?.length">
+      <h4 class="favorites__title">⭐ Favoris ({{ favorites.length }})</h4>
+      <ul class="favorites__list">
+        <li *ngFor="let f of favorites" class="favorites__item">
+          <span class="favorites__dot"></span>
+          <div class="favorites__content">
+            <div class="favorites__line">
+              <strong>{{ f.title }}</strong>
+            </div>
+            <div class="favorites__line -muted">
+              {{ f.category }} • {{ f.date | date:'dd/MM/yyyy' }}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>
