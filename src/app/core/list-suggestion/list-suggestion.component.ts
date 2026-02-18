@@ -3,7 +3,7 @@ import { Suggestion } from '../../models/suggestion'
 @Component({
   selector: 'app-list-suggestion',
   templateUrl: './list-suggestion.component.html',
-  styles: ``
+  styleUrls: ['./list-suggestion.component.css']
 })
 export class ListSuggestionComponent {
   suggestions: Suggestion[] = [
