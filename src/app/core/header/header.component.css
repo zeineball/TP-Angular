@@ -1,0 +1,35 @@
+/* header.component.css */
+nav {
+  background-color: #1976d2; /* A nice modern blue */
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style-type: none; /* Removes the default bullet points */
+  margin: 0;
+  padding: 0;
+  display: flex;         /* Puts items in a row */
+  gap: 1.5rem;           /* Adds space between the links */
+  align-items: center;
+}
+
+a {
+  text-decoration: none; /* Removes the underline */
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease; /* Makes the hover effect smooth */
+}
+
+a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Lightens the background on hover */
+}
+
+/* We will use this class to highlight the currently active page */
+.active-route {
+  background-color: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+}

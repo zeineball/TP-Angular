@@ -25,6 +25,7 @@
         *ngFor="let s of filteredSuggestions()"
         [class.card--refused]="s.status === 'refusee'"
       >
+        <button class ='btn' [routerLink]="['/suggestions', s.id]">Details</button>
         <div class="card__header">
           <h3 class="card__title">{{ s.title }}</h3>
           <span

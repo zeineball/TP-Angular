@@ -1,0 +1,86 @@
+/* The main container card */
+.details-card {
+  max-width: 600px;
+  margin: 2rem auto; /* Centers the card horizontally */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Keeps the header background inside the rounded corners */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Header */
+.card-header {
+  background-color: #1976d2; /* Matches your navigation bar */
+  color: white;
+  padding: 1.5rem;
+  margin: 0;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Card Body & Text */
+.card-body {
+  padding: 2rem 1.5rem;
+}
+
+.info-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* The ID number styling */
+.badge {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Placeholder box for future content */
+.placeholder-content {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #9e9e9e;
+  color: #666;
+}
+
+/* Footer & Back Link */
+.card-footer {
+  background-color: #f8f9fa;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eeeeee;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease; /* Smooth hover transition */
+}
+
+/* Hover effect for the back button */
+.back-link:hover {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.icon {
+  font-style: normal;
+  font-size: 1.2rem;
+}
