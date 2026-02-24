@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Suggestion } from '../../../models/suggestion'
+import {SuggestionFormComponent} from '../suggestion-form/suggestion-form.component';
 @Component({
   selector: 'app-list-suggestion',
   templateUrl: './list-suggestion.component.html',
@@ -82,4 +83,6 @@ export class ListSuggestionComponent {
   likeSuggestion(suggestion: Suggestion): void {
     suggestion.nbLikes++;
   }
+
+  protected readonly SuggestionFormComponent = SuggestionFormComponent;
 }

@@ -6,15 +6,21 @@
   </header>
 
   <!-- Barre de recherche -->
-  <div class="searchbar">
-    <span class="searchbar__icon" aria-hidden="true">🔎</span>
-    <input
-      type="text"
-      class="searchbar__input"
-      [(ngModel)]="searchText"
-      placeholder="Rechercher par titre ou catégorie..."
-      aria-label="Rechercher"
-    />
+  <div class="searchbar-container">
+    <div class="searchbar">
+      <span class="searchbar__icon" aria-hidden="true">🔎</span>
+      <input
+        type="text"
+        class="searchbar__input"
+        [(ngModel)]="searchText"
+        placeholder="Rechercher par titre ou catégorie..."
+        aria-label="Rechercher"
+      />
+    </div>
+
+    <button class='btn' routerLink="add">
+      ➕ Ajouter une suggestion
+    </button>
   </div>
 
   <div class="layout">
