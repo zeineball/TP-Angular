@@ -13,8 +13,9 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
 
   { path: 'suggestions', loadChildren: () => import('./features/suggestions/suggestions.module').then(m => m.SuggestionsModule) },
+
   // Optional: 404
-  { path: '**', component: NotfoundComponent }
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({

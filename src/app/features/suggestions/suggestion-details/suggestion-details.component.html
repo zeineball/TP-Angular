@@ -1,16 +1,19 @@
-<div class="details-card">
+<div class="details-card" *ngIf="suggestion">
   <div class="card-header">
-    <h2>Suggestion Details</h2>
+    <h2>{{ suggestion.title }}</h2>
   </div>
 
   <div class="card-body">
     <p class="info-text">
-      You are currently viewing the details for Suggestion ID:
-      <span class="badge">{{ suggestionId }}</span>
+      Status: <span class="badge">{{ suggestion.status }}</span>
+      <br><br>
+      Catégorie: <strong>{{ suggestion.category }}</strong>
+      <br>
+      Date: <strong>{{ suggestion.date | date:'dd/MM/yyyy' }}</strong>
     </p>
 
     <div class="placeholder-content">
-      <p><em>(Full suggestion description, author, and date would be displayed here...)</em></p>
+      <p>{{ suggestion.description }}</p>
     </div>
   </div>
 
@@ -18,5 +21,16 @@
     <a routerLink="/suggestions" class="back-link">
       <i class="icon">&larr;</i> Back to List
     </a>
+    <button [routerLink]="['/suggestions/update', suggestion.id]" style="background-color: #f57c00; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-right: 10px;">
+      Update
+    </button>
+    <button (click)="delete()" style="background-color: #d32f2f; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+      Supprimer
+    </button>
   </div>
+</div>
+
+<div *ngIf="!suggestion" style="text-align: center; padding: 50px;">
+  <h2>Suggestion non trouvée !</h2>
+  <a routerLink="/suggestions">Retour à la liste</a>
 </div>

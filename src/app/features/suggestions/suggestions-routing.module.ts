@@ -12,8 +12,8 @@ const routes: Routes = [{
     { path: '', component: ListSuggestionComponent },
     // Add the form route HERE, before the :id route
     { path: 'add', component: SuggestionFormComponent },
+    { path: 'update/:id', component: SuggestionFormComponent },
     { path: ':id', component: SuggestionDetailsComponent }
-
   ]
 }];
 

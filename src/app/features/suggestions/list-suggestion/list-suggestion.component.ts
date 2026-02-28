@@ -1,53 +1,31 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Suggestion } from '../../../models/suggestion'
 import {SuggestionFormComponent} from '../suggestion-form/suggestion-form.component';
+import {SuggestionService} from '../../../core/services/suggestion.service';
 @Component({
   selector: 'app-list-suggestion',
   templateUrl: './list-suggestion.component.html',
   styleUrls: ['./list-suggestion.component.css']
 })
-export class ListSuggestionComponent {
-  suggestions: Suggestion[] = [
-    {
-      id: 1,
-      title: 'Organiser une journée team building',
-      description: 'Suggestion pour organiser une journée de team building pour renforcer les liens entre les membres de l\'équipe.',
-      category: 'Événements',
-      date: new Date('2025-01-20'),
-      status: 'acceptee',
-      nbLikes: 10
-    },
-    {
-      id: 2,
-      title: 'Améliorer le système de réservation',
-      description: 'Proposition pour améliorer la gestion des réservations en ligne avec un système de confirmation automatique.',
-      category: 'Technologie',
-      date: new Date('2025-01-15'),
-      status: 'refusee',
-      nbLikes: 0
-    },
-    {
-      id: 3,
-      title: 'Créer un système de récompenses',
-      description: 'Mise en place d\'un programme de récompenses pour motiver les employés et reconnaître leurs efforts.',
-      category: 'Ressources Humaines',
-      date: new Date('2025-01-25'),
-      status: 'refusee',
-      nbLikes: 0
-    },
-    {
-      id: 4,
-      title: 'Moderniser l\'interface utilisateur',
-      description: 'Refonte complète de l\'interface utilisateur pour une meilleure expérience utilisateur.',
-      category: 'Technologie',
-      date: new Date('2025-01-30'),
-      status: 'en_attente',
-      nbLikes: 0
-    }
-  ];
+export class ListSuggestionComponent implements OnInit{
 
-
+  suggestions: Suggestion[] = [];
   favorites: Suggestion[] = [];
+
+  ngOnInit(): void {
+      this.suggestionService.getSuggestionsList().subscribe({
+        next: data =>{
+          this.suggestions = data;
+          console.log('suggestions loaded', data);
+        },
+        error: (err) => {
+          console.error('error loading list', err);
+        }
+      })
+  }
+
+  constructor(private suggestionService: SuggestionService) {
+  }
 
   like(s: Suggestion) {
     s.nbLikes++;
@@ -81,7 +59,15 @@ export class ListSuggestionComponent {
 
   // Méthode pour incrémenter les likes
   likeSuggestion(suggestion: Suggestion): void {
-    suggestion.nbLikes++;
+    this.suggestionService.incrementLikes(suggestion).subscribe({
+      next: () => {
+        suggestion.nbLikes++;
+        console.log('like saved, new total : ', suggestion.nbLikes);
+      },
+      error: (err: any) =>{
+        console.error('error adding  like',err);
+    }
+    });
   }
 
   protected readonly SuggestionFormComponent = SuggestionFormComponent;
